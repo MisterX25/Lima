@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="debugTitle">Debug</string>
+    <string name="debugAction1">Action 1</string>
+    <string name="debugAction2">Action 2</string>
+    <string name="debugAction3">Action 3</string>
+    <string name="debugNavigation1">Menu</string>
+    
+</resources>
