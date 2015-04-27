@@ -1,13 +1,8 @@
 package cpnv.jav1.limaActivities;
 
-import java.util.ArrayList;
-import java.util.zip.Inflater;
-
 import cpnv.jav1.lima.R;
-import cpnv.jav1.lima.R.id;
-import cpnv.jav1.lima.R.layout;
+import cpnv.jav1.limaEntities.Article;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +15,9 @@ public class DebugActivity extends Activity
 
 	// References on the controls of this activity
 	private Button _btn;
-	private TextView _output;	
+	private TextView _output;
+
+    private Article _oneArticle;
 
     // Create activity event handler
 	@Override
@@ -42,6 +39,9 @@ public class DebugActivity extends Activity
        	
        	// Get reference on the output textview
 		_output = (TextView)findViewById(R.id.outputzone);
+
+        // Initialize the text field to the app version
+        _output.setText ("Version: "+getString(R.string.app_version));
     }
 
 	// Any click on this screen will invoke this handler
@@ -52,13 +52,15 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1: 
-			_output.setText(_output.getText()+"\nAction 1");
+			_output.setText(_output.getText()+"\nInstanciation gomme.\n");
+            _oneArticle = new Article("Gomme","123456","Krieg",1.25f,8.25f,200,false);
 			break;
 		case R.id.debugAction2: 
-			_output.setText(_output.getText()+"\nAction 2");
+            _output.setText(_output.getText()+"\nInstanciation crayon.\n");
+            _oneArticle = new Article("Crayon","654321","Caran d'ache",0.25f,8.25f,2500,false);
 			break;
 		case R.id.debugAction3: 
-			_output.setText(_output.getText()+"\nAction 3");
+			_output.setText(_output.getText()+"\nArticle = "+ _oneArticle.dump());
 			break;
 		}
 	}
