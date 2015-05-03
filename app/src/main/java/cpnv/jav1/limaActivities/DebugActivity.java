@@ -2,8 +2,6 @@ package cpnv.jav1.limaActivities;
 
 import cpnv.jav1.lima.R;
 import cpnv.jav1.limaEntities.Article;
-import cpnv.jav1.limaEntities.Book;
-import cpnv.jav1.limaEntities.Gear;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -73,6 +71,7 @@ public class DebugActivity extends Activity
 
         _output.setText("Evaluation Article:\n");
 
+        /*
         ev = 0;
         myArticle = new Article(); // Instanciate one article
         if (myArticle.dump().equals("(à définir)-(à définir)-(à définir)-(à définir)-0.0-0.0-0-false"))
@@ -80,9 +79,9 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
-
+        */
         _output.setText(_output.getText()+"\nCréation instance vierge: "+ev+"/1");
-
+        /*
         ev = 0;
         myArticle = new Article("Crayon","1234","Toto","Migros",0.65f,8.25f,100,false);
         if (myArticle.dump().equals("Crayon-1234-Toto-Migros-0.65-8.25-100-false"))
@@ -114,6 +113,7 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
+        */
         _output.setText(_output.getText()+"\nCréation instance avec valeurs: "+ev+"/5");
 
         // finish
@@ -125,10 +125,10 @@ public class DebugActivity extends Activity
     {
         int res = 0; //total number of points obtained
         int ev=0; // eval of one criterion
-        Book myBook;
 
         _output.setText("Evaluation Book:\n");
-
+        /*
+        Book myBook;
         ev = 0;
         myBook = new Book(); // Instanciate one Book
         if (myBook.dump().equals("(à définir)-(à définir)-(à définir)-(à définir)-0.0-0.0-0-false-(à définir)-0"))
@@ -136,9 +136,9 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
-
+        */
         _output.setText(_output.getText()+"\nCréation instance vierge: "+ev+"/1");
-
+        /*
         ev = 0;
         myBook = new Book("Andromaque","5544","Toto","Payot",0.65f,8.25f,100,false,"Racine",98765);
         if (myBook.dump().equals("Andromaque-5544-Toto-Payot-0.65-8.25-100-false-Racine-98765"))
@@ -182,7 +182,7 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
-
+        */
         _output.setText(_output.getText()+"\nCréation instance avec valeurs: "+ev+"/6");
 
         // finish
@@ -193,10 +193,10 @@ public class DebugActivity extends Activity
     {
         int res = 0; //number of points obtained
         int ev=0; // eval of one criterion
-        Gear myGear;
 
         _output.setText("Evaluation Gear:\n");
-
+        /*
+        Gear myGear;
         ev = 0;
         myGear = new Gear();
         if (myGear.dump().equals("(à définir)-(à définir)-(à définir)-(à définir)-0.0-0.0-0-false-?"))
@@ -204,9 +204,9 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
-
+        */
         _output.setText(_output.getText()+"\nCréation instance vierge: "+ev+"/1");
-
+        /*
         ev = 0;
         myGear = new Gear("Blouse","56982","Toto","SUVA",34.5f,8.25f,78,false,"XS");
         if (myGear.dump().equals("Blouse-56982-Toto-SUVA-34.5-8.25-78-false-XS"))
@@ -250,7 +250,7 @@ public class DebugActivity extends Activity
             ev++;
             res++;
         }
-
+        */
         _output.setText(_output.getText()+"\nCréation instance avec valeurs: "+ev+"/6");
 
         // finish
