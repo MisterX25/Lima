@@ -30,7 +30,8 @@
             android:layout_height="match_parent"
             android:gravity="top|left"
             android:text=""
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textStyle="bold"
+            android:textSize="24sp" />
     </ScrollView>
 
     <LinearLayout

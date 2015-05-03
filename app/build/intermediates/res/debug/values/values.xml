@@ -9,7 +9,7 @@
     <!-- From: file:/Users/Xavier/Documents/Android/Studio/Projects/Lima_2015/app/src/main/res/values/stringsGlobal.xml -->
     <eat-comment/>
     <string name="app_name">Lima</string>
-    <string name="app_version">1.0</string>
+    <string name="app_version">1.0.1</string>
     <!-- From: file:/Users/Xavier/Documents/Android/Studio/Projects/Lima_2015/app/src/main/res/values/stringsDebug.xml -->
     <eat-comment/>
     <string name="debugAction1">Action 1</string>
