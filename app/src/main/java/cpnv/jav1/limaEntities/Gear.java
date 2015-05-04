@@ -5,10 +5,8 @@ package cpnv.jav1.limaEntities;
  */
 public class Gear extends Article {
 
-    public static enum Sizes {U, XS, S, M, L, XL, XXL}
-
     //==========================   Attributes   =============================
-    private Sizes _size;
+    private int _size;
 
     //==========================  Constructors  =============================
     // default
@@ -36,18 +34,28 @@ public class Gear extends Article {
 
     public String getSize()
     {
-        if (_size == Sizes.U)
-            return "?";
-        else
-            return _size.name();
+        String res = "?";
+        switch (_size)
+        {
+            case 1: res="XS"; break;
+            case 2: res="S"; break;
+            case 3: res="M"; break;
+            case 4: res="L"; break;
+            case 5: res="XL"; break;
+            case 6: res="XXL"; break;
+        }
+        return res;
     }
 
     public void setSize(String size)
     {
-        _size = Sizes.U; // by default
-        for (Sizes s: Sizes.values())
-            if (size.equals(s.name()))
-                _size = s;
+        _size = 0; // by default
+        if (size.equals("XS")) _size = 1;
+        if (size.equals("S")) _size = 2;
+        if (size.equals("M")) _size = 3;
+        if (size.equals("L")) _size = 4;
+        if (size.equals("XL")) _size = 5;
+        if (size.equals("XXL")) _size = 6;
     }
 
 }
