@@ -53,13 +53,10 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1:
-            evalArticle();
 			break;
 		case R.id.debugAction2:
-            evalBook();
 			break;
 		case R.id.debugAction3:
-            evalGear();
 			break;
 		}
 	}

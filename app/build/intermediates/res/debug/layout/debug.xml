@@ -42,19 +42,19 @@
             android:id="@+id/debugAction1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Article" />
+            android:text="@string/debugAction1" />
 
         <Button
             android:id="@+id/debugAction2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book" />
+            android:text="@string/debugAction2" />
 
         <Button
             android:id="@+id/debugAction3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gear" />
+            android:text="@string/debugAction3" />
 
     </LinearLayout>
 
