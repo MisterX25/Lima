@@ -16,7 +16,12 @@
 	        android:text="@string/debugNavigation1" />
 	
 	</LinearLayout>
-    
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/classname" />
+
     <ScrollView
         android:id="@+id/scrollViewDebug"
         android:layout_width="match_parent"

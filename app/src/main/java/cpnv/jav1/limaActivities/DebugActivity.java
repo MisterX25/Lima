@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DebugActivity extends Activity 
@@ -64,15 +65,34 @@ public class DebugActivity extends Activity
 		case R.id.debugAction2:
             Teacher anotherTeacher = new Teacher("al","capone");
             anotherTeacher.setsection("info");
-            ClassTeacher oneMC = new ClassTeacher(anotherTeacher,"SI-T1a");
+            EditText cname = (EditText)findViewById(R.id.classname);
+            ClassTeacher oneMC = new ClassTeacher(anotherTeacher,cname.getText().toString());
             output.setText(output.getText() + "\n" + oneMC.dump());
 			break;
 		case R.id.debugAction3:
-            Student oneStudent = new Student();
-            oneStudent.setfirstName("Jean-Marc");
-            oneStudent.setlastName("Di Giacomo");
-            oneStudent.setstartYear(2011);
-            output.setText(output.getText() + "\n" + oneStudent.dump());
+            Student[] group = new Student[5];
+            group[0] = new Student();
+            group[0].setfirstName("Jean-Marc");
+            group[0].setlastName("Di Giacomo");
+            group[0].setstartYear(2011);
+            group[1] = new Student();
+            group[1].setfirstName("Jean-Pierre");
+            group[1].setlastName("Hudi");
+            group[1].setstartYear(2011);
+            group[2] = new Student();
+            group[2].setfirstName("Jean-Paul");
+            group[2].setlastName("Auchon");
+            group[2].setstartYear(2011);
+            group[3] = new Student();
+            group[3].setfirstName("Jean-Jacques");
+            group[3].setlastName("Ouarium");
+            group[3].setstartYear(2011);
+            group[4] = new Student();
+            group[4].setfirstName("Jean-Yves");
+            group[4].setlastName("Herdon");
+            group[4].setstartYear(2011);
+            for (int i=0; i<5; i++)
+                output.setText(output.getText() + "\n" + group[i].dump());
             break;
 
         case R.id.debugAction4: // test db
