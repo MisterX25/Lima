@@ -64,7 +64,7 @@ public class DebugActivity extends Activity
 		case R.id.debugAction1:
             // prof
             try {
-                Teacher oneTeacher = new Teacher(126);
+                Teacher oneTeacher = new Teacher("John","Doe");
                 oneTeacher.setsection("info");
                 output.setText(output.getText() + "\n" + oneTeacher.dump());
             }
@@ -104,7 +104,7 @@ public class DebugActivity extends Activity
 
         case R.id.debugAction4: // test db
             output.setText(output.getText() + "\nConnexion DB ... ");
-            LimaDb limaDb = new LimaDb("http://192.168.0.12/");
+            LimaDb limaDb = new LimaDb("http://192.168.0.51/");
             if (limaDb.connectionIsOK())
                 output.setText(output.getText() + " OK");
             else

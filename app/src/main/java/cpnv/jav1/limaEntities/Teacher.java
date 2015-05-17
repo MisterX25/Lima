@@ -53,12 +53,6 @@ public class Teacher extends Person
         }
     }
 
-    // From DB
-    public Teacher (int id) throws LimaException
-    {
-        super(id);
-    }
-
     //========================== Methods =============================
     @Override
     public final void setBirthDate(Date birthDate) throws LimaException // final so that it cannot be derived further

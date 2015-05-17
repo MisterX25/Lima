@@ -28,29 +28,6 @@ public abstract class Person {
         // empty
     }
 
-    // must be invoked by derived classes because the class is abstract
-    public Person(int id) throws LimaException
-    {
-        LimaDb limaDb = new LimaDb("http://192.168.0.10/");
-        if (limaDb.connectionIsOK())
-        {
-            if (limaDb.executeQuery("SELECT personfirstname, personlastname, personinitials, birthdate FROM person WHERE idperson="+id) > 0)
-            {
-                limaDb.moveNext();
-                setfirstName(limaDb.getField("personfirstname"));
-                setlastName(limaDb.getField("personlastname"));
-                String initialsFromDB = limaDb.getField("personinitials");
-                if (!initialsFromDB.equals(_initials)) // Major inconsistency
-                    throw new LimaException("Initials inconstency!");
-                idperson = id;
-            }
-            else
-                throw new LimaException("person with id "+id+" not found");
-        }
-        else
-            throw new LimaException("Unable to connect to db");
-
-    }
     //========================== Public methods =============================
 
     public String dump()
