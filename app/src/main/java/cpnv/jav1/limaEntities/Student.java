@@ -40,8 +40,11 @@ public class Student extends Person
         return _startYear;
     }
 
-    public void setstartYear(int startYear)
+    public void setstartYear(int startYear) throws LimaException
     {
-        this._startYear = startYear;
+        if (startYear < 2000 || startYear > Calendar.getInstance().get(Calendar.YEAR))
+            throw new LimaException("Invalid start year");
+        else
+            this._startYear = startYear;
     }
 }

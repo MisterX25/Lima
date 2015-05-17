@@ -26,6 +26,12 @@ public class DebugActivity extends Activity
 	// References on the controls of this activity
 	private Button btn;
 	private TextView output;
+    // References on the input fields
+    private EditText fname ;
+    private EditText lname ;
+    private EditText param1 ;
+    private EditText param2 ;
+    private EditText param3 ;
 
     // Create activity event handler
 	@Override
@@ -47,7 +53,14 @@ public class DebugActivity extends Activity
         btn = (Button)findViewById(R.id.debugAction4);
         btn.setOnClickListener(this);
 
-       	// Get reference on the output textview
+        // Get the references on the input fields
+        fname = (EditText)findViewById(R.id.txtFName);
+        lname = (EditText)findViewById(R.id.txtLName);
+        param1 = (EditText)findViewById(R.id.txtParam1);
+        param2 = (EditText)findViewById(R.id.txtParam2);
+        param3 = (EditText)findViewById(R.id.txtParam3);
+
+        // Get reference on the output textview
 		output = (TextView)findViewById(R.id.outputzone);
 
         // Initialize the text field to the app version
@@ -58,29 +71,31 @@ public class DebugActivity extends Activity
 	@Override
 	public void onClick(View btn) {
 
+        SimpleDateFormat sdate = new SimpleDateFormat("dd-M-yyyy");
 		// Let's see which action must be performed
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1:
             // prof
             try {
-                Teacher oneTeacher = new Teacher("John","Doe");
-                oneTeacher.setsection("info");
+                Teacher oneTeacher = new Teacher(fname.getText().toString(),lname.getText().toString());
+                oneTeacher.setsection(param2.getText().toString());
+                oneTeacher.setBirthDate(sdate.parse(param1.getText().toString()));
                 output.setText(output.getText() + "\n" + oneTeacher.dump());
             }
             catch (LimaException le){
                 output.setText(output.getText() + "\nErreur d'instanciation du prof (" + le.getMessage() + ")");
             }
+            catch (Exception e) {
+                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + e.getMessage() + ")");
+            }
 			break;
 		case R.id.debugAction2:
             try {
-                Teacher anotherTeacher = new Teacher("al","capone");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-                String dateInString = "31-08-1982";
-                anotherTeacher.setBirthDate(sdf.parse(dateInString));
-                anotherTeacher.setsection("info");
-                EditText cname = (EditText)findViewById(R.id.classname);
-                ClassTeacher oneMC = new ClassTeacher(anotherTeacher,cname.getText().toString());
+                Teacher anotherTeacher = new Teacher(fname.getText().toString(),lname.getText().toString());
+                anotherTeacher.setBirthDate(sdate.parse(param1.getText().toString()));
+                anotherTeacher.setsection(param2.getText().toString());
+                ClassTeacher oneMC = new ClassTeacher(anotherTeacher,param3.getText().toString());
                 output.setText(output.getText() + "\n" + oneMC.dump());
             }
             catch (LimaException le) {
@@ -93,13 +108,17 @@ public class DebugActivity extends Activity
 		case R.id.debugAction3:
             Student oneStudent = new Student();
             try {
-                oneStudent.setfirstName("Jean-Marc");
-                oneStudent.setlastName("Di Giacomo");
-                oneStudent.setstartYear(2011);
+                oneStudent.setfirstName(fname.getText().toString());
+                oneStudent.setlastName(lname.getText().toString());
+                oneStudent.setBirthDate(sdate.parse(param1.getText().toString()));
+                oneStudent.setstartYear(Integer.parseInt(param2.getText().toString()));
                 output.setText(output.getText() + "\n" + oneStudent.dump());
             }
             catch (LimaException le){
                 output.setText(output.getText() + "\nErreur d'instanciation d'élève (" + le.getMessage() + ")");
+            }
+            catch (Exception e) {
+                output.setText(output.getText() + "\nErreur d'instanciation d'élève (" + e.getMessage() + ")");
             }
             break;
 

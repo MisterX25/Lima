@@ -77,9 +77,12 @@ public class Teacher extends Person
         return _section;
     }
 
-    public void setsection(String section)
+    public void setsection(String section) throws LimaException
     {
-        this._section = section;
+        if (section.length() < 4)
+            throw new LimaException("Illegal section name");
+        else
+            this._section = section;
     }
 
 }
