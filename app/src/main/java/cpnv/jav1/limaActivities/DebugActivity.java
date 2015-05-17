@@ -100,7 +100,7 @@ public class DebugActivity extends Activity
 
         case R.id.debugAction4: // test db
             output.setText(output.getText() + "\nConnexion DB ... ");
-            LimaDb limaDb = new LimaDb("http://192.168.0.10/");
+            LimaDb limaDb = new LimaDb("http://192.168.0.51/");
             if (limaDb.connectionIsOK())
                 output.setText(output.getText() + " OK");
             else
