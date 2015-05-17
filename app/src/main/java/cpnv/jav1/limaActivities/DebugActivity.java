@@ -1,6 +1,5 @@
 package cpnv.jav1.limaActivities;
 
-import cpnv.jav1.lima.LimaDb;
 import cpnv.jav1.lima.R;
 import cpnv.jav1.limaEntities.ClassTeacher;
 import cpnv.jav1.limaEntities.Student;
@@ -38,8 +37,6 @@ public class DebugActivity extends Activity
         btn = (Button)findViewById(R.id.debugAction2);
        	btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction3);
-        btn.setOnClickListener(this);
-        btn = (Button)findViewById(R.id.debugAction4);
         btn.setOnClickListener(this);
 
        	// Get reference on the output textview
@@ -95,22 +92,6 @@ public class DebugActivity extends Activity
                 output.setText(output.getText() + "\n" + group[i].dump());
             break;
 
-        case R.id.debugAction4: // test db
-            LimaDb limaDb = new LimaDb("http://192.168.0.10/");
-            if (limaDb.connectionIsOK())
-                output.setText(output.getText() + "\nConnexion DB OK");
-            else
-            {
-                output.setText(output.getText() + "\nConnexion to DB failed");
-                return;
-            }
-            if (limaDb.executeQuery("SELECT personfirstname, personlastname FROM person WHERE role=2") > 0)
-                while (limaDb.moveNext())
-                    output.setText(output.getText() + "\n" + limaDb.getField("personfirstname") + " " + limaDb.getField("personlastname"));
-            else
-                output.setText(output.getText() + "\nAucune personne trouvée");
-
-			break;
 		}
 	}
 

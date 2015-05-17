@@ -61,12 +61,6 @@
             android:layout_height="wrap_content"
             android:text="@string/debugAction3" />
 
-        <Button
-            android:id="@+id/debugAction4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/debugAction4" />
-
     </LinearLayout>
 
 </LinearLayout>
