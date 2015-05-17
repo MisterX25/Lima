@@ -95,6 +95,7 @@ public class DebugActivity extends Activity
             try {
                 oneStudent.setfirstName("Jean-Marc");
                 oneStudent.setlastName("Di Giacomo");
+                oneStudent.setstartYear(2011);
                 output.setText(output.getText() + "\n" + oneStudent.dump());
             }
             catch (LimaException le){
