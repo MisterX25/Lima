@@ -19,4 +19,5 @@ android {
             debuggable true
         }
     }
+    compileOptions.encoding = 'UTF-8'
 }
