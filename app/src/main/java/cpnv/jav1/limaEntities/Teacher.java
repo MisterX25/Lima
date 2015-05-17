@@ -1,12 +1,20 @@
 package cpnv.jav1.limaEntities;
 
+import android.util.Log;
+
+import java.util.Calendar;
 import java.util.Date;
+
+import cpnv.jav1.lima.LimaException;
 
 /**
  * Created by Xavier on 07.05.15.
  */
 public class Teacher extends Person
 {
+    //========================== Constants =============================
+    public final static int teacherMinAge=25; // constant
+
     //========================== Attributes =============================
 
     private String _section;
@@ -18,24 +26,50 @@ public class Teacher extends Person
     }
 
     // basic
-    public Teacher(String firstName, String lastName)
+    public Teacher(String firstName, String lastName) throws LimaException
     {
-        setfirstName(firstName);
-        setlastName(lastName);
+        try {
+            setfirstName(firstName);
+            setlastName(lastName);
+        }
+        catch (LimaException le){
+            throw new LimaException("Unable to create new teacher ("+firstName+" " + lastName+")");
+        }
+        catch (Exception e){
+            Log.i ("LIMA","Exception: "+e.getMessage());
+        }
     }
 
     // Copy constructor
     public Teacher (Teacher teacher)
     {
-        setBirthDate(teacher.getbirthDate());
-        setfirstName(teacher.getfirstName());
-        setlastName(teacher.getlastName());
+        try {
+            setBirthDate(teacher.getbirthDate());
+            setfirstName(teacher.getfirstName());
+            setlastName(teacher.getlastName());
+        }
+        catch (LimaException le){
+            // do nothing
+        }
     }
+
+    // From DB
+    public Teacher (int id) throws LimaException
+    {
+        super(id);
+    }
+
     //========================== Methods =============================
     @Override
-    public final void setBirthDate(Date birthDate) // final so that it cannot be derived further
+    public final void setBirthDate(Date birthDate) throws LimaException // final so that it cannot be derived further
     {
-        _birthDate = birthDate;
+        Calendar now = Calendar.getInstance();
+        Calendar dob = Calendar.getInstance();
+        dob.setTime(birthDate);
+        if (now.get(Calendar.YEAR) - dob.get(Calendar.YEAR) < teacherMinAge)
+            throw new LimaException("Too young to be a teacher");
+        else
+            _birthDate = birthDate;
     }
 
     public String dump()

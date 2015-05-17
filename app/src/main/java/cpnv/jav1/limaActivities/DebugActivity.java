@@ -1,6 +1,7 @@
 package cpnv.jav1.limaActivities;
 
 import cpnv.jav1.lima.LimaDb;
+import cpnv.jav1.lima.LimaException;
 import cpnv.jav1.lima.R;
 import cpnv.jav1.limaEntities.ClassTeacher;
 import cpnv.jav1.limaEntities.Person;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DebugActivity extends Activity 
@@ -61,46 +63,48 @@ public class DebugActivity extends Activity
 		{
 		case R.id.debugAction1:
             // prof
-            Teacher oneTeacher = new Teacher("john","doe");
-            oneTeacher.setsection("info");
-            output.setText(output.getText() + "\n" + oneTeacher.dump());
+            try {
+                Teacher oneTeacher = new Teacher(126);
+                oneTeacher.setsection("info");
+                output.setText(output.getText() + "\n" + oneTeacher.dump());
+            }
+            catch (LimaException le){
+                output.setText(output.getText() + "\nErreur d'instanciation du prof (" + le.getMessage() + ")");
+            }
 			break;
 		case R.id.debugAction2:
-            Teacher anotherTeacher = new Teacher("al","capone");
-            anotherTeacher.setsection("info");
-            EditText cname = (EditText)findViewById(R.id.classname);
-            ClassTeacher oneMC = new ClassTeacher(anotherTeacher,cname.getText().toString());
-            output.setText(output.getText() + "\n" + oneMC.dump());
+            try {
+                Teacher anotherTeacher = new Teacher("al","capone");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+                String dateInString = "31-08-1982";
+                anotherTeacher.setBirthDate(sdf.parse(dateInString));
+                anotherTeacher.setsection("info");
+                EditText cname = (EditText)findViewById(R.id.classname);
+                ClassTeacher oneMC = new ClassTeacher(anotherTeacher,cname.getText().toString());
+                output.setText(output.getText() + "\n" + oneMC.dump());
+            }
+            catch (LimaException le) {
+                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + le.getMessage() + ")");
+            }
+            catch (Exception e) {
+                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + e.getMessage() + ")");
+            }
 			break;
 		case R.id.debugAction3:
-            Student[] group = new Student[5];
-            group[0] = new Student();
-            group[0].setfirstName("Jean-Marc");
-            group[0].setlastName("Di Giacomo");
-            group[0].setstartYear(2011);
-            group[1] = new Student();
-            group[1].setfirstName("Jean-Pierre");
-            group[1].setlastName("Hudi");
-            group[1].setstartYear(2011);
-            group[2] = new Student();
-            group[2].setfirstName("Jean-Paul");
-            group[2].setlastName("Auchon");
-            group[2].setstartYear(2011);
-            group[3] = new Student();
-            group[3].setfirstName("Jean-Jacques");
-            group[3].setlastName("Ouarium");
-            group[3].setstartYear(2011);
-            group[4] = new Student();
-            group[4].setfirstName("Jean-Yves");
-            group[4].setlastName("Herdon");
-            group[4].setstartYear(2011);
-            for (int i=0; i<5; i++)
-                output.setText(output.getText() + "\n" + group[i].dump());
+            Student oneStudent = new Student();
+            try {
+                oneStudent.setfirstName("Jean-Marc");
+                oneStudent.setlastName("Di Giacomo");
+                output.setText(output.getText() + "\n" + oneStudent.dump());
+            }
+            catch (LimaException le){
+                output.setText(output.getText() + "\nErreur d'instanciation d'élève (" + le.getMessage() + ")");
+            }
             break;
 
         case R.id.debugAction4: // test db
             output.setText(output.getText() + "\nConnexion DB ... ");
-            LimaDb limaDb = new LimaDb("http://192.168.0.10/");
+            LimaDb limaDb = new LimaDb("http://192.168.0.12/");
             if (limaDb.connectionIsOK())
                 output.setText(output.getText() + " OK");
             else
