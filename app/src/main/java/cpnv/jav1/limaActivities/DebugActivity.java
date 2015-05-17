@@ -24,6 +24,12 @@ public class DebugActivity extends Activity
 	// References on the controls of this activity
 	private Button btn;
 	private TextView output;
+    // References on the input fields
+    private EditText fname ;
+    private EditText lname ;
+    private EditText param1 ;
+    private EditText param2 ;
+    private EditText param3 ;
 
     // Create activity event handler
 	@Override
@@ -47,6 +53,12 @@ public class DebugActivity extends Activity
 
        	// Get reference on the output textview
 		output = (TextView)findViewById(R.id.outputzone);
+        // Get the references on the input fields
+        fname = (EditText)findViewById(R.id.txtFName);
+        lname = (EditText)findViewById(R.id.txtLName);
+        param1 = (EditText)findViewById(R.id.txtParam1);
+        param2 = (EditText)findViewById(R.id.txtParam2);
+        param3 = (EditText)findViewById(R.id.txtParam3);
 
         // Initialize the text field to the app version
         output.setText("Version: " + getString(R.string.app_version));
@@ -68,7 +80,7 @@ public class DebugActivity extends Activity
 		case R.id.debugAction2:
             Teacher anotherTeacher = new Teacher("al","capone");
             anotherTeacher.setsection("info");
-            EditText cname = (EditText)findViewById(R.id.classname);
+            EditText cname = (EditText)findViewById(R.id.txtParam1);
             ClassTeacher oneMC = new ClassTeacher(anotherTeacher,cname.getText().toString());
             output.setText(output.getText() + "\n" + oneMC.dump());
 			break;

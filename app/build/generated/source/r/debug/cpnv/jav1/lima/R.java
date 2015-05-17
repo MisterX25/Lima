@@ -21,14 +21,23 @@ public final class R {
         public static final int lima=0x7f020001;
     }
     public static final class id {
-        public static final int classname=0x7f060001;
-        public static final int debugAction1=0x7f060004;
-        public static final int debugAction2=0x7f060005;
-        public static final int debugAction3=0x7f060006;
-        public static final int debugAction4=0x7f060007;
+        public static final int debugAction1=0x7f06000d;
+        public static final int debugAction2=0x7f06000e;
+        public static final int debugAction3=0x7f06000f;
+        public static final int debugAction4=0x7f060010;
         public static final int debugNavigation1=0x7f060000;
-        public static final int outputzone=0x7f060003;
-        public static final int scrollViewDebug=0x7f060002;
+        public static final int lblFName=0x7f060001;
+        public static final int lblLName=0x7f060003;
+        public static final int lblParam1=0x7f060005;
+        public static final int lblParam2=0x7f060007;
+        public static final int lblParam3=0x7f060009;
+        public static final int outputzone=0x7f06000c;
+        public static final int scrollViewDebug=0x7f06000b;
+        public static final int txtFName=0x7f060002;
+        public static final int txtLName=0x7f060004;
+        public static final int txtParam1=0x7f060006;
+        public static final int txtParam2=0x7f060008;
+        public static final int txtParam3=0x7f06000a;
     }
     public static final class layout {
         public static final int debug=0x7f030000;
