@@ -9,12 +9,12 @@ public class ClassTeacher extends Teacher
     private String _class;
 
     //========================== Constructor =============================
-    public ClassTeacher (Teacher teacher, String classname)
+    public ClassTeacher (Teacher jules, String classname)
     {
-        setfirstName(teacher.getfirstName());
-        setlastName(teacher.getlastName());
-        setBirthDate(teacher.getbirthDate());
-        setsection(teacher.getsection());
+        setfirstName(jules.getfirstName());
+        setlastName(jules.getlastName());
+        setBirthDate(jules.getbirthDate());
+        setsection(jules.getsection());
         setclass(classname);
     }
     //========================== Methods =============================

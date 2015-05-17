@@ -3,6 +3,7 @@ package cpnv.jav1.limaActivities;
 import cpnv.jav1.lima.LimaDb;
 import cpnv.jav1.lima.R;
 import cpnv.jav1.limaEntities.ClassTeacher;
+import cpnv.jav1.limaEntities.Person;
 import cpnv.jav1.limaEntities.Student;
 import cpnv.jav1.limaEntities.Teacher;
 
@@ -14,6 +15,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.Date;
 
 public class DebugActivity extends Activity 
 				   implements OnClickListener {
@@ -96,12 +99,13 @@ public class DebugActivity extends Activity
             break;
 
         case R.id.debugAction4: // test db
-            LimaDb limaDb = new LimaDb("http://192.168.0.10/");
+            output.setText(output.getText() + "\nConnexion DB ... ");
+            LimaDb limaDb = new LimaDb("http://192.168.0.51/");
             if (limaDb.connectionIsOK())
-                output.setText(output.getText() + "\nConnexion DB OK");
+                output.setText(output.getText() + " OK");
             else
             {
-                output.setText(output.getText() + "\nConnexion to DB failed");
+                output.setText(output.getText() + " failed");
                 return;
             }
             if (limaDb.executeQuery("SELECT personfirstname, personlastname FROM person WHERE role=2") > 0)
