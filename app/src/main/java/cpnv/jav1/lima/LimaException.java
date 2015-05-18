@@ -26,6 +26,11 @@ public class LimaException extends Exception {
         _user = 0; // by default
         _timestamp = new Date();
         _device = android.os.Build.SERIAL;
-        Log.i("LIMA", "LimaException: "+ _timestamp.toString() + ", " + this.getMessage());
+        Log.i("LIMA", dump());
+    }
+
+    public String dump()
+    {
+        return "("+_timestamp.toString()+","+_user+","+_device+") "+getMessage();
     }
 }
