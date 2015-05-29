@@ -1,6 +1,7 @@
 
     <resources>
         <string name="app_name">Lima</string>
-        <string name="app_version">1.4.1 (finish, week 4)</string>
+        <string name="app_version">1.5.0 (start, week 5)</string>
         <string name="empty">()</string>
+        <string name="home">Accueil</string>
     </resources>

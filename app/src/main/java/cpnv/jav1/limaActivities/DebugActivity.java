@@ -9,6 +9,7 @@ import cpnv.jav1.limaEntities.Student;
 import cpnv.jav1.limaEntities.Teacher;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,69 +77,18 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1:
-            // prof
-            try {
-                Teacher oneTeacher = new Teacher(fname.getText().toString(),lname.getText().toString());
-                oneTeacher.setsection(param2.getText().toString());
-                oneTeacher.setBirthDate(sdate.parse(param1.getText().toString()));
-                output.setText(output.getText() + "\n" + oneTeacher.dump());
-            }
-            catch (LimaException le){
-                output.setText(output.getText() + "\nErreur d'instanciation du prof (" + le.getMessage() + ")");
-            }
-            catch (Exception e) {
-                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + e.getMessage() + ")");
-            }
 			break;
 		case R.id.debugAction2:
-            try {
-                Teacher anotherTeacher = new Teacher(fname.getText().toString(),lname.getText().toString());
-                anotherTeacher.setBirthDate(sdate.parse(param1.getText().toString()));
-                anotherTeacher.setsection(param2.getText().toString());
-                ClassTeacher oneMC = new ClassTeacher(anotherTeacher,param3.getText().toString());
-                output.setText(output.getText() + "\n" + oneMC.dump());
-            }
-            catch (LimaException le) {
-                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + le.getMessage() + ")");
-            }
-            catch (Exception e) {
-                output.setText(output.getText() + "\nErreur d'instanciation du prof de classe (" + e.getMessage() + ")");
-            }
 			break;
 		case R.id.debugAction3:
-            Student oneStudent = new Student();
-            try {
-                oneStudent.setfirstName(fname.getText().toString());
-                oneStudent.setlastName(lname.getText().toString());
-                oneStudent.setBirthDate(sdate.parse(param1.getText().toString()));
-                oneStudent.setstartYear(Integer.parseInt(param2.getText().toString()));
-                output.setText(output.getText() + "\n" + oneStudent.dump());
-            }
-            catch (LimaException le){
-                output.setText(output.getText() + "\nErreur d'instanciation d'élève (" + le.getMessage() + ")");
-            }
-            catch (Exception e) {
-                output.setText(output.getText() + "\nErreur d'instanciation d'élève (" + e.getMessage() + ")");
-            }
+            break;
+        case R.id.debugAction4:
+            break;
+        case R.id.debugAction5:
+            break;
+        case R.id.debugAction6:
             break;
 
-        case R.id.debugAction4: // test db
-            output.setText(output.getText() + "\nConnexion DB ... ");
-            LimaDb limaDb = new LimaDb("http://192.168.0.51/");
-            if (limaDb.connectionIsOK())
-                output.setText(output.getText() + " OK");
-            else
-            {
-                output.setText(output.getText() + " failed");
-                return;
-            }
-            if (limaDb.executeQuery("SELECT personfirstname, personlastname FROM person WHERE role=2") > 0)
-                while (limaDb.moveNext())
-                    output.setText(output.getText() + "\n" + limaDb.getField("personfirstname") + " " + limaDb.getField("personlastname"));
-            else
-                output.setText(output.getText() + "\nAucune personne trouvée");
-
-			break;
 		}
 	}
 

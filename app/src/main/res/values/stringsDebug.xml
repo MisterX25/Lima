@@ -2,10 +2,11 @@
 <resources>
 
     <string name="debugTitle">Debug</string>
-    <string name="debugAction1">Prof</string>
-    <string name="debugAction2">MC</string>
-    <string name="debugAction3">Elève</string>
-    <string name="debugAction4">Database</string>
-    <string name="debugNavigation1">Menu</string>
-    
+    <string name="debugAction1">&lt;</string>
+    <string name="debugAction2">&gt;</string>
+    <string name="debugAction3">Créer</string>
+    <string name="debugAction4">Charger</string>
+    <string name="debugAction5">Modifier</string>
+    <string name="debugAction6">Supprimer</string>
+
 </resources>
