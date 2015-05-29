@@ -12,12 +12,13 @@
     <string name="app_version">1.5.0 (start, week 5)</string>
     <!-- From: file:/Users/Xavier/Documents/Android/Studio/Projects/Lima_2015/app/src/main/res/values/stringsDebug.xml -->
     <eat-comment/>
-    <string name="debugAction1">&lt;</string>
-    <string name="debugAction2">></string>
-    <string name="debugAction3">Créer</string>
-    <string name="debugAction4">Charger</string>
-    <string name="debugAction5">Modifier</string>
-    <string name="debugAction6">Supprimer</string>
+    <string name="debugAction1">Connexion</string>
+    <string name="debugAction2">&lt;</string>
+    <string name="debugAction3">></string>
+    <string name="debugAction4">Créer</string>
+    <string name="debugAction5">Charger</string>
+    <string name="debugAction6">Modifier</string>
+    <string name="debugAction7">Supprimer</string>
     <string name="debugTitle">Debug</string>
     <!-- From: file:/Users/Xavier/Documents/Android/Studio/Projects/Lima_2015/app/src/main/res/values/stringsGlobal.xml -->
     <eat-comment/>

@@ -92,6 +92,8 @@ public class DebugActivity extends Activity
             break;
         case R.id.debugAction6:
             break;
+        case R.id.debugAction7:
+            break;
 
 		}
 	}
