@@ -28,11 +28,11 @@ public class DebugActivity extends Activity
 	private Button btn;
 	private TextView output;
     // References on the input fields
-    private EditText fname ;
-    private EditText lname ;
-    private EditText param1 ;
-    private EditText param2 ;
-    private EditText param3 ;
+    private EditText title ;
+    private EditText artnumb ;
+    private EditText author ;
+    private EditText isbn ;
+    private EditText price ;
 
     // Create activity event handler
 	@Override
@@ -42,7 +42,7 @@ public class DebugActivity extends Activity
         setContentView(R.layout.debug);
         
         // Log messages (to logcat)
-        Log.i ("LIMA", "Started debug activity!!!!!");
+        Log.i("LIMA", "Started debug activity!!!!!");
 
         // Setup event handler on action button
         btn = (Button)findViewById(R.id.debugAction1);
@@ -53,13 +53,17 @@ public class DebugActivity extends Activity
         btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction4);
         btn.setOnClickListener(this);
+        btn = (Button)findViewById(R.id.debugAction5);
+        btn.setOnClickListener(this);
+        btn = (Button)findViewById(R.id.debugAction6);
+        btn.setOnClickListener(this);
 
         // Get the references on the input fields
-        fname = (EditText)findViewById(R.id.txtFName);
-        lname = (EditText)findViewById(R.id.txtLName);
-        param1 = (EditText)findViewById(R.id.txtParam1);
-        param2 = (EditText)findViewById(R.id.txtParam2);
-        param3 = (EditText)findViewById(R.id.txtParam3);
+        title = (EditText)findViewById(R.id.txtTitle);
+        artnumb = (EditText)findViewById(R.id.txtArtNumber);
+        author = (EditText)findViewById(R.id.txtAuthor);
+        isbn = (EditText)findViewById(R.id.txtISBN);
+        price = (EditText)findViewById(R.id.txtPrice);
 
         // Get reference on the output textview
 		output = (TextView)findViewById(R.id.outputzone);

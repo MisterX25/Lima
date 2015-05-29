@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtFName" />
+            android:id="@+id/txtTitle" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,7 +34,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtLName" />
+            android:id="@+id/txtArtNumber" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +50,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtParam1" />
+            android:id="@+id/txtAuthor" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +66,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtParam2" />
+            android:id="@+id/txtISBN" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,7 +82,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtParam3" />
+            android:id="@+id/txtPrice" />
     </LinearLayout>
 
     <ScrollView
