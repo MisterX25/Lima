@@ -2,11 +2,12 @@
 <resources>
 
     <string name="debugTitle">Debug</string>
-    <string name="debugAction1">&lt;</string>
-    <string name="debugAction2">&gt;</string>
-    <string name="debugAction3">Créer</string>
-    <string name="debugAction4">Charger</string>
-    <string name="debugAction5">Modifier</string>
-    <string name="debugAction6">Supprimer</string>
+    <string name="debugAction1">Connexion</string>
+    <string name="debugAction2">&lt;</string>
+    <string name="debugAction3">&gt;</string>
+    <string name="debugAction4">Créer</string>
+    <string name="debugAction5">Charger</string>
+    <string name="debugAction6">Modifier</string>
+    <string name="debugAction7">Supprimer</string>
 
 </resources>

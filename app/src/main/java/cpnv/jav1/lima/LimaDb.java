@@ -63,7 +63,9 @@ public class LimaDb {
         HashMap<String, String> postData = new HashMap<String, String>();// The data of the POST request
         String res = httpPost(postData,"testdb.php");
         if (res.equals("OK"))
+        {
             return true;
+        }
         else
         {
             Log.i ("LIMA","Database check failed: "+res);
@@ -183,7 +185,8 @@ public class LimaDb {
     {
         // synchronous post: we post in background, then wait for completion
         AsyncHttpPost asyncHttpPost = new AsyncHttpPost(data);
-        asyncHttpPost.execute(_wsURL+"/Lima/"+page);
+        String url = _wsURL+"/Lima/"+page;
+        asyncHttpPost.execute(url);
 
         // now wait for completion
         while (asyncHttpPost.getMyStatus() == 0)
@@ -199,7 +202,7 @@ public class LimaDb {
         if (asyncHttpPost.getMyStatus() == 1) // success
             return asyncHttpPost.getResult();
         else
-            return "AsyncHttpPost error ("+String.valueOf(asyncHttpPost.getMyStatus())+")";
+            return "AsyncHttpPost error on url "+ url + "("+String.valueOf(asyncHttpPost.getMyStatus())+")";
     }
 
     /**

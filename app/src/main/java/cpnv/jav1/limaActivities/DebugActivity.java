@@ -27,45 +27,50 @@ public class DebugActivity extends Activity
 	// References on the controls of this activity
 	private Button btn;
 	private TextView output;
-    // References on the input fields
-    private EditText fname ;
-    private EditText lname ;
-    private EditText param1 ;
-    private EditText param2 ;
-    private EditText param3 ;
+    private EditText title ;
+    private EditText artnumb ;
+    private EditText author ;
+    private EditText isbn ;
+    private EditText price ;
+    private LimaDb ldb=null;
 
     // Create activity event handler
-	@Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
-		// Initialize and display view
+        // Initialize and display view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.debug);
-        
+
         // Log messages (to logcat)
-        Log.i ("LIMA", "Started debug activity!!!!!");
+        Log.i("LIMA", "Started debug activity!!!!!");
 
         // Setup event handler on action button
         btn = (Button)findViewById(R.id.debugAction1);
-       	btn.setOnClickListener(this);
+        btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction2);
-       	btn.setOnClickListener(this);
+        btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction3);
         btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction4);
         btn.setOnClickListener(this);
+        btn = (Button)findViewById(R.id.debugAction5);
+        btn.setOnClickListener(this);
+        btn = (Button)findViewById(R.id.debugAction6);
+        btn.setOnClickListener(this);
 
         // Get the references on the input fields
-        fname = (EditText)findViewById(R.id.txtFName);
-        lname = (EditText)findViewById(R.id.txtLName);
-        param1 = (EditText)findViewById(R.id.txtParam1);
-        param2 = (EditText)findViewById(R.id.txtParam2);
-        param3 = (EditText)findViewById(R.id.txtParam3);
+        title = (EditText)findViewById(R.id.txtTitle);
+        artnumb = (EditText)findViewById(R.id.txtArtNumber);
+        author = (EditText)findViewById(R.id.txtAuthor);
+        isbn = (EditText)findViewById(R.id.txtISBN);
+        price = (EditText)findViewById(R.id.txtPrice);
 
         // Get reference on the output textview
 		output = (TextView)findViewById(R.id.outputzone);
 
         // Initialize the text field to the app version
         output.setText("Version: " + getString(R.string.app_version));
+
     }
 
 	// Any click on this screen will invoke this handler
@@ -77,6 +82,26 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1:
+            // Perform initialization
+            ldb = new LimaDb("http://192.168.0.51/"); // don't forget the http:// at the beginning and the / at the end
+            if (ldb.connectionIsOK())
+            {
+                output.setText(output.getText()+"\nEchec de la connexion !");
+            }
+            else
+            {
+                if (ldb.executeQuery("Select articlename, articlenumber, author, ISBN, price from article INNER JOIN bookdetail ON fk_article=idarticle") == 0)
+                    output.setText(output.getText()+"\nAucun livre trouvé");
+                else
+                {
+                    ldb.moveNext(); // read first element
+                    title.setText(ldb.getField("articlename"));
+                    artnumb.setText(ldb.getField("articlenumber"));
+                    author.setText(ldb.getField("author"));
+                    isbn.setText(ldb.getField("ISBN"));
+                    price.setText(ldb.getField("price"));
+                }
+            }
 			break;
 		case R.id.debugAction2:
 			break;
@@ -87,6 +112,8 @@ public class DebugActivity extends Activity
         case R.id.debugAction5:
             break;
         case R.id.debugAction6:
+            break;
+        case R.id.debugAction7:
             break;
 
 		}
