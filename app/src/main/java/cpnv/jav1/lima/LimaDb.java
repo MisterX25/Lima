@@ -89,7 +89,7 @@ public class LimaDb {
         postData.put("sql", query); // $_POST['sql']=query
         _selection = httpPost(postData,"execquery.php");
 
-        Log.i("LIMA", _selection);
+        //Log.i("LIMA", _selection);
         // Initialise the XML parser
         _xmlFactoryObject = null;
         _myparser = null;
