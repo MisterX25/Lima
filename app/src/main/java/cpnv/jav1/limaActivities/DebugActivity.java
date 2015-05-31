@@ -32,7 +32,7 @@ public class DebugActivity extends Activity
     private EditText author ;
     private EditText isbn ;
     private EditText price ;
-    private EditText id ;
+    private TextView id ;
     private LimaDb ldb=null;
     private String crecid; // current record id
 
@@ -68,7 +68,7 @@ public class DebugActivity extends Activity
         author = (EditText)findViewById(R.id.txtAuthor);
         isbn = (EditText)findViewById(R.id.txtISBN);
         price = (EditText)findViewById(R.id.txtPrice);
-        id = (EditText)findViewById(R.id.txtID);
+        id = (TextView)findViewById(R.id.txtID);
 
         // Get reference on the output textview
 		output = (TextView)findViewById(R.id.outputzone);

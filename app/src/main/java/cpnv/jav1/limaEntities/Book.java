@@ -1,12 +1,17 @@
 package cpnv.jav1.limaEntities;
 
+import cpnv.jav1.lima.LimaException;
+
 /**
  * Created by Xavier on 03.05.15.
  */
-public class Book extends Article {
+public class Book extends Article implements Limable {
     //==========================   Attributes   =============================
     private long _ISBN;
     private String _author;
+
+    //==========================   Private variables   =============================
+    private int dbid; // database record id
 
     //==========================  Constructors  =============================
     // default
@@ -59,4 +64,69 @@ public class Book extends Article {
         else
             _author = author;
     }
+
+    //========================== Limable interface  =============================
+
+    /**
+     * =======================================================================
+     * Inserts the object in the database
+     *
+     * @throws LimaException
+     * in case of:
+     *  - Database error
+     *  - Article number is null or empty
+     *  - Article number already exists
+     * =======================================================================
+     */
+    public void create() throws LimaException
+    {
+
+    }
+
+    /**
+     * =======================================================================
+     * Reads the object from the database
+     * The article number must be set before calling this method
+     * @throws LimaException
+     * in case of:
+     *  - Database error
+     *  - Article number is null or empty
+     *  - Article number does not exist
+     * =======================================================================
+     */
+    public void read() throws LimaException
+    {
+
+    }
+
+    /**
+     * =======================================================================
+     * Updates the record
+     * @throws LimaException
+     * in case of:
+     *  - Database error
+     *  - Article number is null or empty
+     *  - Article number does not exist
+     * =======================================================================
+     */
+    public void update() throws LimaException
+    {
+
+    }
+
+    /**
+     * =======================================================================
+     * Deletes the record
+     * @throws LimaException
+     * in case of:
+     *  - Database error
+     *  - Article number is null or empty
+     *  - Article number does not exist
+     * =======================================================================
+     */
+    public void delete() throws LimaException
+    {
+
+    }
+
 }
