@@ -3,13 +3,9 @@ package cpnv.jav1.limaActivities;
 import cpnv.jav1.lima.LimaDb;
 import cpnv.jav1.lima.LimaException;
 import cpnv.jav1.lima.R;
-import cpnv.jav1.limaEntities.ClassTeacher;
-import cpnv.jav1.limaEntities.Person;
-import cpnv.jav1.limaEntities.Student;
-import cpnv.jav1.limaEntities.Teacher;
+import cpnv.jav1.limaEntities.Book;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,9 +13,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DebugActivity extends Activity 
 				   implements OnClickListener {
@@ -35,6 +31,8 @@ public class DebugActivity extends Activity
     private TextView id ;
     private LimaDb ldb=null;
     private String crecid; // current record id
+
+    Book myBook = null; // one Book object for various tests
 
     // Create activity event handler
     @Override
@@ -83,157 +81,114 @@ public class DebugActivity extends Activity
 	public void onClick(View btn) {
 
         SimpleDateFormat sdate = new SimpleDateFormat("dd-M-yyyy");
-        String query; // for db calls
+        String query;
+
 		// Let's see which action must be performed
 		switch (btn.getId()) 
 		{
 		case R.id.debugAction1:
-            // Perform initialization
-            ldb = new LimaDb("http://192.168.0.10/"); // don't forget the http:// at the beginning and the / at the end
-/*
-            if (ldb.connectionIsOK())
+            myBook = new Book();
+            try {
+                myBook.readFirst();
+                showBook(myBook);
+                output.setText(output.getText() + "\nPremier livre chargé");
+            } catch (LimaException le) {
+                output.setText(output.getText()+"\nPas de livres ("+le.getMessage()+")");
+            }
+			break;
+		case R.id.debugAction2: // previous record
+            if (myBook == null)
             {
-                output.setText(output.getText()+"\nEchec de la connexion !");
+                Toast toast = Toast.makeText(getApplicationContext(), "Pas de livre courant", Toast.LENGTH_SHORT);
+                toast.show();
             }
             else
             {
-*/
-                query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
-                        "FROM article INNER JOIN bookdetail ON fk_article=idarticle";
-                if (ldb.executeQuery(query) == 0)
-                    output.setText(output.getText()+"\nAucun livre trouvé");
-                else
-                {
-                    ldb.moveNext(); // read first element
-                    id.setText(ldb.getField("idarticle"));
-                    title.setText(ldb.getField("articlename"));
-                    artnumb.setText(ldb.getField("articlenumber"));
-                    author.setText(ldb.getField("author"));
-                    isbn.setText(ldb.getField("ISBN"));
-                    price.setText(ldb.getField("price"));
-                    crecid = ldb.getField("idarticle"); // memorize current record
+                try {
+                    myBook.readPrevious();
+                    showBook(myBook);
+                    output.setText(output.getText() + "\nLivre précédent chargé");
+                } catch (LimaException le) {
+                    output.setText(output.getText()+"\nDébut de liste atteint ("+le.getMessage()+")");
                 }
-//            }
-			break;
-		case R.id.debugAction2: // previous record
-            if (ldb == null) return; // no database connection
-            query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
-                    "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
-                    "WHERE idarticle < " + crecid + " " +
-                    "ORDER by idarticle DESC";
-            if (ldb.executeQuery(query) == 0)
-                output.setText(output.getText()+"\nOn est arrivé au début de la liste");
-            else
-            {
-                ldb.moveNext(); // read first element
-                id.setText(ldb.getField("idarticle"));
-                title.setText(ldb.getField("articlename"));
-                artnumb.setText(ldb.getField("articlenumber"));
-                author.setText(ldb.getField("author"));
-                isbn.setText(ldb.getField("ISBN"));
-                price.setText(ldb.getField("price"));
-                crecid = ldb.getField("idarticle"); // memorize current record
             }
 			break;
 		case R.id.debugAction3: // next record
-            if (ldb == null) return; // no database connection
-            query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
-                    "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
-                    "WHERE idarticle > " + crecid + " " +
-                    "ORDER by idarticle";
-            if (ldb.executeQuery(query) == 0)
-                output.setText(output.getText()+"\nOn est arrivé à la fin de la liste");
+            if (myBook == null)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(), "Pas de livre courant", Toast.LENGTH_SHORT);
+                toast.show();
+            }
             else
             {
-                ldb.moveNext(); // read first element
-                id.setText(ldb.getField("idarticle"));
-                title.setText(ldb.getField("articlename"));
-                artnumb.setText(ldb.getField("articlenumber"));
-                author.setText(ldb.getField("author"));
-                isbn.setText(ldb.getField("ISBN"));
-                price.setText(ldb.getField("price"));
-                crecid = ldb.getField("idarticle"); // memorize current record
+                try {
+                    myBook.readNext();
+                    showBook(myBook);
+                    output.setText(output.getText() + "\nLivre suivant chargé");
+                } catch (LimaException le) {
+                    output.setText(output.getText()+"\nFin de liste atteinte ("+le.getMessage()+")");
+                }
             }
             break;
         case R.id.debugAction4: // create
-            if (ldb == null) return; // no database connection
-            // Now insert data
-            query = "INSERT INTO article (articlename, articlenumber, price) VALUES ('"+title.getText()+"','"+artnumb.getText()+"',"+price.getText()+")";
-            if (ldb.executeQuery(query) == 0)
-                output.setText(output.getText()+"\nErreur de création de l'article");
-            else
-            {
-                // get last insert id
-                ldb.executeQuery("Select idarticle as lid from article order by idarticle desc limit 1");
-                ldb.moveNext();
-                String lid = ldb.getField("lid");
-                // Now insert the book details
-                query = "INSERT INTO bookdetail (author, ISBN, fk_article) VALUES ('"+author.getText()+"','"+isbn.getText()+"',"+lid+")";
-                if (ldb.executeQuery(query) == 0)
-                {
-                    output.setText(output.getText() + "\nErreur de création de l'article");
-                    // we must get rid of the article
-                    ldb.executeQuery("DELETE FROM article WHERE idarticle = " + lid);
-                }
-                else
-                {
-                    // get last insert id
-                    ldb.executeQuery("Select idbookdetail as lid from bookdetail order by idbookdetail desc limit 1");
-                    ldb.moveNext();
-                    crecid = lid; // current record is the new one
-                    output.setText(output.getText()+"\nNouveau livre créé:" + lid);
-                    id.setText(crecid);
-                }
+            try {
+                myBook = new Book(title.getText().toString(), artnumb.getText().toString(), "", "", Float.parseFloat(price.getText().toString()), 8, 0, false, author.getText().toString(), Long.parseLong(isbn.getText().toString()));
+                myBook.create();
+                id.setText(Integer.toString(myBook.getId()));
+                output.setText(output.getText() + "\nLivre créé (" + Integer.toString(myBook.getId()) + ")");
+            } catch (LimaException le) {
+                output.setText(output.getText()+"\nEchec de création du livre ("+le.getMessage()+")");
             }
-
             break;
         case R.id.debugAction5: // read
-            if (ldb == null) return; // no database connection
-            query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
-                    "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
-                    "WHERE idarticle = " + id.getText() ;
-            if (ldb.executeQuery(query) == 0)
-            {
-                output.setText(output.getText() + "\nArticle non trouvé");
-                id.setText(crecid);
-            }
-            else
-            {
-                ldb.moveNext(); // read first element
-                id.setText(ldb.getField("idarticle"));
-                title.setText(ldb.getField("articlename"));
-                artnumb.setText(ldb.getField("articlenumber"));
-                author.setText(ldb.getField("author"));
-                isbn.setText(ldb.getField("ISBN"));
-                price.setText(ldb.getField("price"));
-                crecid = ldb.getField("idarticle"); // memorize current record
-                output.setText(output.getText()+"\nLivre chargé:" + crecid);
+            try {
+                myBook = new Book();
+                myBook.setNumber(artnumb.getText().toString());
+                myBook.read();
+                id.setText(Integer.toString(myBook.getId()));
+                showBook(myBook);
+                output.setText(output.getText() + "\nLivre lu (" + Integer.toString(myBook.getId()) + ")");
+            } catch (LimaException le){
+                output.setText(output.getText()+"\nEchec de lecture du livre ("+le.getMessage()+")");
             }
             break;
         case R.id.debugAction6: // update
-            if (ldb == null) return; // no database connection
-            // We need the bookdetail id
-            query = "SELECT idbookdetail FROM bookdetail WHERE fk_article = " + id.getText() ;
-            ldb.executeQuery(query);
-            ldb.moveNext(); // read element
-            String bid = ldb.getField("idbookdetail");
-
-            // Update the article part
-            query = "UPDATE article SET articlename = '"+title.getText()+"', articlenumber = '"+artnumb.getText()+"', price = "+price.getText()+ " WHERE idarticle = " + id.getText() ;
-            ldb.executeQuery(query);
-            // Update the book part
-            query = "UPDATE bookdetail SET ISBN = '"+isbn.getText()+"', author = '"+author.getText()+"' WHERE idbookdetail = " + bid ;
-            ldb.executeQuery(query);
-            output.setText(output.getText() + "\nLivre modifié");
+            try {
+                myBook = new Book(title.getText().toString(), artnumb.getText().toString(), "", "", Float.parseFloat(price.getText().toString()), 8, 0, false, author.getText().toString(), Long.parseLong(isbn.getText().toString()));
+                myBook.update();
+                output.setText(output.getText() + "\nLivre mis à jour");
+            } catch (LimaException le) {
+                output.setText(output.getText()+"\nEchec la mise à jour du livre ("+le.getMessage()+")");
+            }
             break;
         case R.id.debugAction7: // delete
-            if (ldb == null) return; // no database connection
-            query = "DELETE FROM article WHERE idarticle = " + id.getText() ;
-            ldb.executeQuery(query);
-            output.setText(output.getText() + "\nLivre supprimé.");
+            if (myBook == null)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(), "Pas de livre courant", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else
+            {
+                try {
+                    myBook.delete();
+                    output.setText(output.getText() + "\nLivre supprimé");
+                    showBook(myBook);
+                } catch (LimaException le) {
+                    output.setText(output.getText()+"\nErreur de suppression ("+le.getMessage()+")");
+                }
+            }
             break;
 
 		}
 	}
 
+    private void showBook(Book abook) // Put an object in the display
+    {
+        id.setText(Integer.toString(abook.getId()));
+        title.setText(abook.getName());
+        artnumb.setText(abook.getNumber());
+        author.setText(abook.getAuthor());
+        isbn.setText(Long.toString(abook.getISBN()));
+        price.setText(Double.toString(abook.getPrice()));
+    }
 }

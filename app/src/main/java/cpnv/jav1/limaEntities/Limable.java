@@ -37,6 +37,7 @@ public interface Limable
     /**
      * =======================================================================
      * Reads the first object of the table from the database
+     * The record order is the physical one (ascending on id)
      * @throws LimaException
      * in case of:
      *  - Database error
@@ -48,6 +49,7 @@ public interface Limable
     /**
      * =======================================================================
      * Loads the object with the content of the next one in the database
+     * The record order is the physical one (ascending on id)
      * @throws LimaException
      * in case of:
      *  - Database error
@@ -59,6 +61,7 @@ public interface Limable
     /**
      * =======================================================================
      * Loads the object with the content of the previous one in the database
+     * The record order is the physical one (ascending on id)
      * @throws LimaException
      * in case of:
      *  - Database error

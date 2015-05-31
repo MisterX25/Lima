@@ -17,6 +17,7 @@ public class Article
     private float _TVA;           // VAT
     private int _stock;           // How many are presently in stock
     private boolean _obsolete;    // Still in use or not
+    protected int _dbid;          // database record id
 
     //========================== Constructors =============================
     // default
@@ -62,7 +63,7 @@ public class Article
 
     public void setName(String name)
     {
-        if (name.length() < 3)
+        if (name == null || name.length() < 3)
             _name=tbd;
         else
             _name = name;
@@ -75,7 +76,7 @@ public class Article
 
     public void setNumber(String number)
     {
-        if (number.length() < 3)
+        if (number == null || number.length() < 3)
             _number=tbd;
         else
             _number = number;
@@ -88,7 +89,7 @@ public class Article
 
     public void setResp(String resp)
     {
-        if (resp.length() < 3)
+        if (resp == null || resp.length() < 3)
             _resp = tbd;
         else
             _resp = resp;
@@ -101,7 +102,7 @@ public class Article
 
     public void setSupplier(String supplier)
     {
-        if (supplier.length() < 3)
+        if (supplier == null || supplier.length() < 3)
             _supplier = tbd;
         else
             _supplier = supplier;
@@ -154,6 +155,11 @@ public class Article
     public void setObsolete(boolean obsolete)
     {
         _obsolete = obsolete;
+    }
+
+    public int getId()
+    {
+        return _dbid;
     }
 
 }
