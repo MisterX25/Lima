@@ -91,7 +91,7 @@ public class DebugActivity extends Activity
             try {
                 myBook.readFirst();
                 showBook(myBook);
-                output.setText(output.getText() + "\nPremier livre chargé");
+                output.setText(output.getText() + "\nPremier livre chargé ("+myBook.getId()+")");
             } catch (LimaException le) {
                 output.setText(output.getText()+"\nPas de livres ("+le.getMessage()+")");
             }
@@ -107,7 +107,7 @@ public class DebugActivity extends Activity
                 try {
                     myBook.readPrevious();
                     showBook(myBook);
-                    output.setText(output.getText() + "\nLivre précédent chargé");
+                    output.setText(output.getText() + "\nLivre précédent chargé ("+myBook.getId()+")");
                 } catch (LimaException le) {
                     output.setText(output.getText()+"\nDébut de liste atteint ("+le.getMessage()+")");
                 }
@@ -124,7 +124,7 @@ public class DebugActivity extends Activity
                 try {
                     myBook.readNext();
                     showBook(myBook);
-                    output.setText(output.getText() + "\nLivre suivant chargé");
+                    output.setText(output.getText() + "\nLivre suivant chargé ("+myBook.getId()+")");
                 } catch (LimaException le) {
                     output.setText(output.getText()+"\nFin de liste atteinte ("+le.getMessage()+")");
                 }
@@ -153,12 +153,24 @@ public class DebugActivity extends Activity
             }
             break;
         case R.id.debugAction6: // update
-            try {
-                myBook = new Book(title.getText().toString(), artnumb.getText().toString(), "", "", Float.parseFloat(price.getText().toString()), 8, 0, false, author.getText().toString(), Long.parseLong(isbn.getText().toString()));
-                myBook.update();
-                output.setText(output.getText() + "\nLivre mis à jour");
-            } catch (LimaException le) {
-                output.setText(output.getText()+"\nEchec la mise à jour du livre ("+le.getMessage()+")");
+            if (myBook == null)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(), "Pas de livre courant", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else
+            {
+                try {
+                    myBook.setName(title.getText().toString());
+                    myBook.setNumber(artnumb.getText().toString());
+                    myBook.setAuthor(author.getText().toString());
+                    myBook.setISBN(Long.parseLong(isbn.getText().toString()));
+                    myBook.setPrice(Float.parseFloat(price.getText().toString()));
+                    myBook.update();
+                    output.setText(output.getText() + "\nLivre mis à jour");
+                } catch (LimaException le) {
+                    output.setText(output.getText() + "\nEchec la mise à jour du livre (" + le.getMessage() + ")");
+                }
             }
             break;
         case R.id.debugAction7: // delete

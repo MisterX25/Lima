@@ -247,7 +247,7 @@ public class Book extends Article implements Limable {
         if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
         // We need the bookdetail id
         query = "SELECT idbookdetail FROM bookdetail WHERE fk_article = " + _dbid ;
-        if (ldb.executeQuery(query) == 0) throw new LimaException("Article not found");
+        if (ldb.executeQuery(query) == 0) throw new LimaException("Article not found ("+query+")");
         ldb.moveNext(); // read element
         String bid = ldb.getField("idbookdetail");
 
