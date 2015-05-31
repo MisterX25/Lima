@@ -84,23 +84,16 @@ public class DebugActivity extends Activity
 		case R.id.debugAction1:
             // Perform initialization
             ldb = new LimaDb("http://192.168.0.51/"); // don't forget the http:// at the beginning and the / at the end
-            if (ldb.connectionIsOK())
-            {
-                output.setText(output.getText()+"\nEchec de la connexion !");
-            }
+            if (ldb.executeQuery("Select articlename, articlenumber, author, ISBN, price from article INNER JOIN bookdetail ON fk_article=idarticle") == 0)
+                output.setText(output.getText()+"\nAucun livre trouvé");
             else
             {
-                if (ldb.executeQuery("Select articlename, articlenumber, author, ISBN, price from article INNER JOIN bookdetail ON fk_article=idarticle") == 0)
-                    output.setText(output.getText()+"\nAucun livre trouvé");
-                else
-                {
-                    ldb.moveNext(); // read first element
-                    title.setText(ldb.getField("articlename"));
-                    artnumb.setText(ldb.getField("articlenumber"));
-                    author.setText(ldb.getField("author"));
-                    isbn.setText(ldb.getField("ISBN"));
-                    price.setText(ldb.getField("price"));
-                }
+                ldb.moveNext(); // read first element
+                title.setText(ldb.getField("articlename"));
+                artnumb.setText(ldb.getField("articlenumber"));
+                author.setText(ldb.getField("author"));
+                isbn.setText(ldb.getField("ISBN"));
+                price.setText(ldb.getField("price"));
             }
 			break;
 		case R.id.debugAction2:
