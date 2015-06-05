@@ -46,7 +46,7 @@ public class DebugActivity extends Activity
         Log.i("LIMA", "Started debug activity!!!!!");
 
         // Setup event handler on action button
-        btn = (Button)findViewById(R.id.navGear);
+        btn = (Button)findViewById(R.id.navList);
         btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction1);
         btn.setOnClickListener(this);
@@ -89,8 +89,8 @@ public class DebugActivity extends Activity
 		// Let's see which action must be performed
 		switch (btn.getId()) 
 		{
-        case R.id.navGear:
-            startActivity(new Intent(this, GearActivity.class));
+        case R.id.navList:
+            startActivity(new Intent(this, BookListActivity.class));
             break;
 
 		case R.id.debugAction1:

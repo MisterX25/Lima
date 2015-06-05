@@ -54,7 +54,7 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:22:17
 	android:name
 		ADDED from AndroidManifest.xml:22:27
-activity#cpnv.jav1.limaActivities.GearActivity
+activity#cpnv.jav1.limaActivities.BookListActivity
 ADDED from AndroidManifest.xml:26:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:29:13

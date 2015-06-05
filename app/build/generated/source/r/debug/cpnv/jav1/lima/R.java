@@ -21,35 +21,35 @@ public final class R {
         public static final int lima=0x7f020001;
     }
     public static final class id {
-        public static final int debugAction1=0x7f06000f;
-        public static final int debugAction2=0x7f060010;
-        public static final int debugAction3=0x7f060011;
-        public static final int debugAction4=0x7f060012;
-        public static final int debugAction5=0x7f060013;
-        public static final int debugAction6=0x7f060014;
-        public static final int debugAction7=0x7f060015;
-        public static final int lblArtNumber=0x7f060005;
-        public static final int lblAuthor=0x7f060007;
-        public static final int lblID=0x7f060001;
-        public static final int lblISBN=0x7f060009;
-        public static final int lblPrice=0x7f06000b;
-        public static final int lblTitle=0x7f060003;
-        public static final int navDebug=0x7f060016;
-        public static final int navGear=0x7f060000;
-        public static final int outputzone=0x7f06000e;
-        public static final int outputzoneGear=0x7f060018;
-        public static final int scrollViewDebug=0x7f06000d;
-        public static final int scrollViewGear=0x7f060017;
-        public static final int txtArtNumber=0x7f060006;
-        public static final int txtAuthor=0x7f060008;
-        public static final int txtID=0x7f060002;
-        public static final int txtISBN=0x7f06000a;
-        public static final int txtPrice=0x7f06000c;
-        public static final int txtTitle=0x7f060004;
+        public static final int debugAction1=0x7f060012;
+        public static final int debugAction2=0x7f060013;
+        public static final int debugAction3=0x7f060014;
+        public static final int debugAction4=0x7f060015;
+        public static final int debugAction5=0x7f060016;
+        public static final int debugAction6=0x7f060017;
+        public static final int debugAction7=0x7f060018;
+        public static final int lblArtNumber=0x7f060008;
+        public static final int lblAuthor=0x7f06000a;
+        public static final int lblID=0x7f060004;
+        public static final int lblISBN=0x7f06000c;
+        public static final int lblPrice=0x7f06000e;
+        public static final int lblTitle=0x7f060006;
+        public static final int navDebug=0x7f060000;
+        public static final int navList=0x7f060003;
+        public static final int outputzone=0x7f060011;
+        public static final int outputzoneGear=0x7f060002;
+        public static final int scrollViewDebug=0x7f060010;
+        public static final int scrollViewGear=0x7f060001;
+        public static final int txtArtNumber=0x7f060009;
+        public static final int txtAuthor=0x7f06000b;
+        public static final int txtID=0x7f060005;
+        public static final int txtISBN=0x7f06000d;
+        public static final int txtPrice=0x7f06000f;
+        public static final int txtTitle=0x7f060007;
     }
     public static final class layout {
-        public static final int debug=0x7f030000;
-        public static final int gear=0x7f030001;
+        public static final int booklist=0x7f030000;
+        public static final int debug=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
