@@ -22,7 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-			
-	</application>
+
+        <activity
+            android:name="cpnv.jav1.limaActivities.GearActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+
+    </application>
     
 </manifest>

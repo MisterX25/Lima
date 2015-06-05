@@ -6,6 +6,7 @@ import cpnv.jav1.lima.R;
 import cpnv.jav1.limaEntities.Book;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,8 @@ public class DebugActivity extends Activity
         Log.i("LIMA", "Started debug activity!!!!!");
 
         // Setup event handler on action button
+        btn = (Button)findViewById(R.id.navGear);
+        btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction1);
         btn.setOnClickListener(this);
         btn = (Button)findViewById(R.id.debugAction2);
@@ -86,6 +89,10 @@ public class DebugActivity extends Activity
 		// Let's see which action must be performed
 		switch (btn.getId()) 
 		{
+        case R.id.navGear:
+            startActivity(new Intent(this, GearActivity.class));
+            break;
+
 		case R.id.debugAction1:
             myBook = new Book();
             try {

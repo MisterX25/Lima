@@ -11,6 +11,9 @@ public class Book extends Article implements Limable {
     private long _ISBN;
     private String _author;
 
+    //==========================   Constants   =============================
+    private final String dburl = "http://192.168.0.51/";
+
     //==========================   Private variables   =============================
     LimaDb ldb = null; // database connection
     String query; // SQL statements
@@ -82,7 +85,7 @@ public class Book extends Article implements Limable {
      */
     public void create() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         // Now insert data
         query = "INSERT INTO article (articlename, articlenumber, price) VALUES ('"+getName()+"','"+getNumber()+"',"+getPrice()+")";
@@ -120,7 +123,7 @@ public class Book extends Article implements Limable {
      */
     public void read() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         if (getNumber() == null) throw new LimaException("Can't read undefined article");
 
@@ -152,7 +155,7 @@ public class Book extends Article implements Limable {
      */
     public void readFirst() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
@@ -182,7 +185,7 @@ public class Book extends Article implements Limable {
      */
     public void readNext() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
@@ -213,7 +216,7 @@ public class Book extends Article implements Limable {
      */
     public void readPrevious() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
@@ -244,7 +247,7 @@ public class Book extends Article implements Limable {
      */
     public void update() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
         // We need the bookdetail id
         query = "SELECT idbookdetail FROM bookdetail WHERE fk_article = " + _dbid ;
         if (ldb.executeQuery(query) == 0) throw new LimaException("Article not found ("+query+")");
@@ -271,7 +274,7 @@ public class Book extends Article implements Limable {
      */
     public void delete() throws LimaException
     {
-        if (ldb == null) ldb = new LimaDb("http://192.168.0.10/"); // open database connection if needed
+        if (ldb == null) ldb = new LimaDb(dburl); // open database connection if needed
 
         query = "DELETE FROM article WHERE idarticle = " + _dbid ;
         if (ldb.executeQuery(query) == 0) throw new LimaException("Article not found");
