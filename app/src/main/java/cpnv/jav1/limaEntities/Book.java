@@ -12,7 +12,7 @@ public class Book extends Article implements Limable {
     private String _author;
 
     //==========================   Constants   =============================
-    private final String dburl = "http://192.168.0.51/";
+    private final String dburl = "http://192.168.0.10/";
 
     //==========================   Private variables   =============================
     LimaDb ldb = null; // database connection
@@ -34,6 +34,22 @@ public class Book extends Article implements Limable {
         super(name, number, resp, supplier, price, tVA, stock, obsolete);
         setISBN(ISBN);
         setAuthor(author);
+    }
+
+    // Copy constructor
+    public Book(Book ori)
+    {
+        super();
+        setName(ori.getName());
+        setNumber(ori.getNumber());
+        setResp(ori.getResp());
+        setSupplier(ori.getSupplier());
+        setPrice(ori.getPrice());
+        setObsolete(ori.getObsolete());
+        setStock(ori.getStock());
+        setTVA(ori.getTVA());
+        setAuthor(ori.getAuthor());
+        setISBN(ori.getISBN());
     }
     //========================== Public methods =============================
 

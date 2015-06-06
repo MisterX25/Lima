@@ -37,9 +37,9 @@ public final class R {
         public static final int navDebug=0x7f060000;
         public static final int navList=0x7f060003;
         public static final int outputzone=0x7f060011;
-        public static final int outputzoneGear=0x7f060002;
+        public static final int outputzoneList=0x7f060002;
         public static final int scrollViewDebug=0x7f060010;
-        public static final int scrollViewGear=0x7f060001;
+        public static final int scrollViewList=0x7f060001;
         public static final int txtArtNumber=0x7f060009;
         public static final int txtAuthor=0x7f06000b;
         public static final int txtID=0x7f060005;

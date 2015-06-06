@@ -17,14 +17,14 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scrollViewGear"
+        android:id="@+id/scrollViewList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true" >
 
         <TextView
-            android:id="@+id/outputzoneGear"
+            android:id="@+id/outputzoneList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|left"

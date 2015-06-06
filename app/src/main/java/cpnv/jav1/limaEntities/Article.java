@@ -13,8 +13,8 @@ public class Article
     private String _number;       // Article number
     private String _resp;         // Responsible person
     private String _supplier;     // Who we buy the article from
-    private float _price;         // The price we pay when we buy it
-    private float _TVA;           // VAT
+    private double _price;         // The price we pay when we buy it
+    private double _TVA;           // VAT
     private int _stock;           // How many are presently in stock
     private boolean _obsolete;    // Still in use or not
     protected int _dbid;          // database record id
@@ -34,8 +34,8 @@ public class Article
     }
 
     // Constructor setting all members
-    public Article(String name, String number, String resp, String supplier, float price,
-                   float tVA, int stock, boolean obsolete)
+    public Article(String name, String number, String resp, String supplier, double price,
+                   double tVA, int stock, boolean obsolete)
     {
         setName(name);          // Use setters
         setNumber(number);
@@ -113,7 +113,7 @@ public class Article
         return _price;
     }
 
-    public void setPrice(float price)
+    public void setPrice(double price)
     {
         if (price < 0.0f)
             _price = 0.0f;
@@ -121,12 +121,12 @@ public class Article
             _price = price;
     }
 
-    public float getTVA()
+    public double getTVA()
     {
         return _TVA;
     }
 
-    public void setTVA(float tVA)
+    public void setTVA(double tVA)
     {
         if (tVA < 0.0f)
             _TVA = 0.0f;
