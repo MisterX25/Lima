@@ -60,6 +60,7 @@ public class AsyncHttpPost extends AsyncTask<String, String, String> {
                 str = new String(result, "UTF-8");
                 _status = 1; // OK
                 _result = str;
+                // Log.i ("LIMA",str);
             }
             else
                 _status = 2; // Connection error

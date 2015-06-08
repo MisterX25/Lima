@@ -152,7 +152,7 @@ public class LimaDb {
             }
             catch (XmlPullParserException e)
             {
-                Log.i("LIMA","Bad XML");
+                Log.i("LIMA","Bad XML:"+ e.getMessage()+" ("+_myparser.getText()+")");
             }
             catch (IOException e)
             {

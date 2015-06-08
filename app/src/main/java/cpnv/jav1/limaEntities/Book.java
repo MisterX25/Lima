@@ -6,13 +6,13 @@ import cpnv.jav1.lima.LimaException;
 /**
  * Created by Xavier on 03.05.15.
  */
-public class Book extends Article implements Limable {
+public class Book extends Article implements Limable, Comparable {
     //==========================   Attributes   =============================
     private long _ISBN;
     private String _author;
 
     //==========================   Constants   =============================
-    private final String dburl = "http://192.168.0.10/";
+    private final String dburl = "http://192.168.0.51/";
 
     //==========================   Private variables   =============================
     LimaDb ldb = null; // database connection
@@ -56,6 +56,11 @@ public class Book extends Article implements Limable {
     public String dump()
     {
         return super.dump() + "-" + _author + "-" + _ISBN;
+    }
+
+    public String toString() // required by listview adapter
+    {
+        return getName();
     }
 
     //========================== getter/setter  =============================
@@ -175,7 +180,8 @@ public class Book extends Article implements Limable {
 
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
-                "ORDER BY idarticle";
+                "ORDER BY idarticle "+
+                "LIMIT 1";
         if (ldb.executeQuery(query) == 0) throw new LimaException("No books found");
 
         ldb.moveNext(); // read first element
@@ -206,7 +212,8 @@ public class Book extends Article implements Limable {
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
                 "WHERE idarticle > " + Integer.toString(_dbid) + " "+
-                "ORDER BY idarticle";
+                "ORDER BY idarticle " +
+                "LIMIT 1";
         if (ldb.executeQuery(query) == 0) throw new LimaException("Passed end of table");
 
         ldb.moveNext(); // read first element
@@ -237,7 +244,8 @@ public class Book extends Article implements Limable {
         query = "Select idarticle, articlename, articlenumber, author, ISBN, price "+
                 "FROM article INNER JOIN bookdetail ON fk_article=idarticle "+
                 "WHERE idarticle < " + Integer.toString(_dbid) + " "+
-                "ORDER BY idarticle DESC";
+                "ORDER BY idarticle DESC " +
+                "LIMIT 1";
         if (ldb.executeQuery(query) == 0) throw new LimaException("Passed beginning of table");
 
         ldb.moveNext(); // read first element
@@ -301,4 +309,9 @@ public class Book extends Article implements Limable {
         }
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Book b = (Book)o;
+        return super.getName().compareTo(b.getName());
+    }
 }
